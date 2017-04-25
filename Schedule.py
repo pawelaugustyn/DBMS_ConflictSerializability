@@ -38,20 +38,20 @@ class Schedule(object):
     def _create_precedence_graph(self):
         conflicts = []
         for i in range(0, len(self._scheduleList)):
-            outOp = self._scheduleList[i]
+            out_op = self._scheduleList[i]
             for j in range(0, len(self._scheduleList)):
-                inOp = self._scheduleList[j]
-                if outOp == inOp:
+                in_op = self._scheduleList[j]
+                if out_op == in_op:
                     continue
-                if outOp.get_operation() == "r" == inOp.get_operation():
+                if out_op.get_operation() == "r" == in_op.get_operation():
                     continue
-                if outOp.get_var() != inOp.get_var():
+                if out_op.get_var() != in_op.get_var():
                     continue
                 if i < j:
-                    confl_op = ConflictOperation(outOp, inOp)
+                    confl_op = ConflictOperation(out_op, in_op)
                     conflicts.append(confl_op)
                 elif i > j:
-                    confl_op = ConflictOperation(inOp, outOp)
+                    confl_op = ConflictOperation(in_op, out_op)
                     conflicts.append(confl_op)
         return conflicts
 

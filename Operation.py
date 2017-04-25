@@ -14,7 +14,11 @@ class Operation(object):
         return self._variableName
 
     def __eq__(self, other):
-        return self.__dict__ == other.__dict__
+        if self is other:
+            return True
+        if not isinstance(other, Operation):
+            return False
+        return self._transactionID == other.get_tid()
 
     @staticmethod
     def _is_operation(operation):
